@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            #container{
+                position:relative;
+            }
+            #integral{
+                background-image:url('img/integral.png');
+                background-size:100%;
+                background-repeat:no-repeat;
+                width:40px;
+                height:64px;
+                position:absolute;
+                top:20px;
+            }
+            #value_a{
+                position:absolute;
+                left:40px;
+                top:10px;
+            }
+            #value_b{
+                position:absolute;
+                left:10px;
+                top:70px;
+            }
+            #value_function{
+                position:absolute;
+                left:40px;
+                top:30px;
+                font-size:30px;
+            }
+            #answer{
+                position:absolute;
+                left:145px;
+                top:47px;
+                border:1px solid #000;
+                width:150px;
+                height:30px;
+                line-height: 10px;
+                padding: 5px;
+            }
+.tooltip-inner {
+    width: auto;
+    max-width: none;
+    font-size: 12px;
+}
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Cálculo II</a></li>
+
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div id="contenedor" class="jumbotron">
+            <div class="container">
+                <div id="correcto" class="alert alert-success hide">Respuesta correcta</div>
+                <div id="feedback" class="alert alert-warning hide"></div>
+                Cuál es la integral de:
+
+                <div id="container">
+                    <div id="integral"></div>
+                    <div id="value_a">a</div>
+                    <div id="value_b">b</div>
+                    <div id="value_function"><span id="value_x"><i>x</i></span><sup><span id="value_e">e</span></sup><span id="value_dx"><i>dx</i></span> =</div>
+                    <input id="answer" type="text">
+                </div>
+                <br>  <br> <br>
+                <a id="verificar" class="btn btn-primary">Enviar</a>
+            </div>
+        </div>
+
+        <!-- /container -->      
+        <script src="js/vendor/jquery-1.10.1.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+        <div id="miToolTip" class="tooltip fade bottom in hide">
+            <div class="tooltip-arrow"></div>
+            <div id="contenidoTooltip" class="tooltip-inner">
+            </div>
+        </div>
+    </body>
+</html>

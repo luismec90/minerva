@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This is a Reload version 2.5.6 SCORM 1.2 Content Package document-->
+<!--Spawned from the Reload Content Package Generator - http://www.reload.ac.uk-->
+<manifest xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2" xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_rootv1p2p1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" identifier="MANIFEST-B15A24DD26458272CAC765C2531342DB" xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <organizations default="ORG-1473DA2B9E9B15482F76308E91708BF6">
+    <organization identifier="ORG-1473DA2B9E9B15482F76308E91708BF6" structure="hierarchical">
+      <title>triangulo</title>
+      <item identifier="ITEM-40BA117E18B9AE119C22D14DEAE64420" identifierref="RES-4DE2F7314A30A22816F44041AF6A5A7A" isvisible="true">
+        <title>ejercicio</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-4DE2F7314A30A22816F44041AF6A5A7A" type="webcontent" href="launch.html">
+      <file href="launch.html" />
+      <file href="css/bootstrap.min.css" />
+    </resource>
+  </resources>
+</manifest>
+
