@@ -9,34 +9,10 @@ $(function() {
     });
     $("#toast-container").delay(4000).fadeOut('normal');
     $(document).on("click", "img.rank", function() {
-        if ($(this).hasClass("clicked")) {
-            $("img.rank").removeClass("clicked");
-            $("#infoUsuario").hide();
-        } else {
-            $("img.rank").removeClass("clicked");
-            var position = $(this).offset();
-            position.top += $(this).height() + 5;
-            position.left -= 170;
-            $("#infoUsuario").css(position).show();
-            $(this).addClass("clicked");
-            var nombreEstudiante = $(this).data("nombre");
-            $("#divNombreEstudiante").html(nombreEstudiante);
-            var idCurso = $(this).data("id-curso");
-            var idModulo = $(this).data("id-modulo");
-            var idUsuario = $(this).data("id-estudiante");
-            $("#contenidoPopover").html("");
-            $.ajax({
-                url: "../usuario/info",
-                data: {
-                    idCurso: idCurso,
-                    idModulo: idModulo,
-                    idUsuario: idUsuario
-                },
-                success: function(data) {
-                    $("#contenidoPopover").html(data);
-                }
-            });
-        }
+        var idCurso = $(this).data("id-curso");
+        var idUsuario = $(this).data("id-estudiante");
+        modalInfoUsuario(idUsuario, idCurso);
+
     });
     $("#cerrarPopover").click(function() {
         $("img.rank").removeClass("clicked");
@@ -67,8 +43,39 @@ $(function() {
             }
         });
     });
+    $(".info-usuario").click(function() {
+        var idCurso = $(this).data("id-curso");
+        var idUsuario = $(this).data("id-usuario");
+        modalInfoUsuario(idUsuario, idCurso);
+    });
     verificarNuevoLogro();
 });
+
+function modalInfoUsuario(idUsuario, idCurso) {
+    $("#coverDisplay").css({
+        "opacity": "1",
+        "width": "100%",
+        "height": "100%"
+    });
+    $.ajax({
+        url: base_url + "usuario/info",
+        data: {
+            idCurso: idCurso,
+            idUsuario: idUsuario
+        },
+        success: function(data) {
+            $("#coverDisplay").css({
+                "opacity": "0",
+                "width": "0",
+                "height": "0"
+            });
+            $("#body-modal-info-usuario").html(data);
+              $("#modal-info-usuario").modal();
+        }
+    });
+  
+}
+
 function verificarNuevoLogro() {
     $.ajax({
         method: "GET",

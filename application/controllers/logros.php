@@ -21,6 +21,7 @@ class Logros extends CI_Controller {
         $data["tab"] = "logros";
         $data["nombre_curso"] = $curso[0]->nombre;
         $data["idCurso"] = $idCurso;
+        index_bitacora($idCurso);
         $data["logros"] = $this->usuario_curso_logro_model->logrosPorCurso($idCurso);
         $this->load->view('include/header', $data);
         $this->load->view('listar_logros_view');

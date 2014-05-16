@@ -9,8 +9,8 @@ class Bitacora_model extends CI_Model {
         $this->load->database();
     }
 
-    function crearRegistro() {
-        $this->db->insert('bitacora', array("id_estudiante" => $_SESSION["idUsuario"], "fecha_ingreso" => date("Y-m-d H:i:s")));
+    function crearRegistro($data) {
+        $this->db->insert('bitacora', $data);
         return $this->db->insert_id();
     }
 
@@ -19,8 +19,8 @@ class Bitacora_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function obtenerTiempoLogueado($idUsuario) {
-        $query = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(FECHA_SALIDA,FECHA_INGRESO))) tiempo FROM bitacora where FECHA_INGRESO is not NULL AND FECHA_SALIDA is not NULL and id_usuario='$idUsuario'";
+    function obtenerTiempoLogueado($idUsuario, $idCurso) {
+        $query = "SELECT SUM(TIME_TO_SEC(TIMEDIFF(FECHA_SALIDA,FECHA_INGRESO)))/3600 tiempo FROM bitacora where FECHA_SALIDA is not NULL and id_usuario='$idUsuario' and id_curso='$idCurso'";
         return $this->db->query($query)->result();
     }
 

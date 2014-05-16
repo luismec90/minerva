@@ -367,6 +367,9 @@ img.rank{
 #link-trofeos{
     background-color: #762c59;
 }
+#link-muro{
+    background-color: #07B3D3;
+}
 #link-foro-color{
     background-color: #2e8965;
     border-right: 1px solid #DDD;
@@ -376,7 +379,7 @@ img.rank{
     border-right: 1px solid #DDD;
 }
 
-#link-ranking,#link-trofeos,#link-foro-color,#link-foro2-color,#link-curso{
+#link-ranking,#link-trofeos,#link-muro,#link-foro-color,#link-foro2-color,#link-curso{
     min-width: 50px;
     color: #FFF;
     border-left: 1px solid #DDD;
@@ -412,4 +415,7 @@ img.rank{
 #link-posicion:hover{
     text-decoration: none;
 
+}
+a{
+    cursor: pointer;
 }

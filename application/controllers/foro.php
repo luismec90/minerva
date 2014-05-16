@@ -20,7 +20,7 @@ class Foro extends CI_Controller {
         $data["css"] = array("css/foro");
         $data["js"] = array("js/foro");
         $data["idCurso"] = $idCurso;
-//        $this->checkNuevosTemas($idCurso, $data);
+        index_bitacora($idCurso);
         $data["idUsuario"] = $_SESSION["idUsuario"];
         $curso = $this->curso_model->obtenerCursoCompleto($idCurso);
         $data["nombre_curso"] = $curso[0]->nombre;
@@ -124,7 +124,7 @@ class Foro extends CI_Controller {
         $this->temaSuperPopular($idCurso, $idTema);
         $this->muyParticipativo($idCurso);
         $this->superparticipativo($idCurso);
-         $this->mensaje("Mensaje creado exitosamente", "success", "foro/$idCurso/$idTema");
+        $this->mensaje("Mensaje creado exitosamente", "success", "foro/$idCurso/$idTema");
     }
 
     public function eliminarRespuesta($idCurso, $idTema) {
@@ -149,7 +149,7 @@ class Foro extends CI_Controller {
         }
     }
 
-    private function temaPopular($idCurso,$idTema) {
+    private function temaPopular($idCurso, $idTema) {
 
         $r = $this->tema_foro_model->temasPopulares($idTema, 5);
         if (sizeof($r) > 0) {
@@ -165,7 +165,7 @@ class Foro extends CI_Controller {
         }
     }
 
-    private function temaSuperPopular($idCurso,$idTema) {
+    private function temaSuperPopular($idCurso, $idTema) {
         $r = $this->tema_foro_model->temasPopulares($idTema, 20);
         if (sizeof($r) > 0) {
             $tieneElLogro = $this->usuario_curso_logro_model->checkLogroOtroUsuario($r[0]->id_usuario, $idCurso, "8");

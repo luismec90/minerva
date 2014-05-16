@@ -73,6 +73,22 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-info-usuario" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Información del usuario</h4>
+            </div>
+            <div id="body-modal-info-usuario" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button id="cerrar-modal-logros" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="<?= base_url() ?>assets/libs/jQuery-1.11.0/jQuery.min.js"></script>
 <script src="<?= base_url() ?>assets/libs/bootstrap-3.1.1/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/global.js"></script>

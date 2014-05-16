@@ -22,7 +22,7 @@ class Curso extends CI_Controller {
         $data["css"] = array("libs/jquery-ui-1.10.4.custom/css/redmond/jquery-ui-1.10.4.custom.min", "css/curso", "css/ranking");
         $data["js"] = array("libs/time-line/storyjs-embed", "libs/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min", "js/curso");
         $data["idCurso"] = $idCurso;
-
+        index_bitacora($idCurso);
         $modulos = $this->modulo_model->getModulos($idCurso);
         $data["json"] = $this->generarJson($modulos, $idCurso);
 

@@ -25,13 +25,6 @@ class Entrar extends CI_Controller {
                 $_SESSION["idUsuario"] = $usuario[0]->id_usuario;
                 $_SESSION["nombre"] = $usuario[0]->nombres . " " . $usuario[0]->apellidos;
                 $_SESSION["rol"] = $usuario[0]->rol;
-                $ultimaActividad = $this->bitacora_model->lastLogin($usuario[0]->id_usuario);
-                if ($ultimaActividad) {
-                    $_SESSION["ultimaActividad"] = $ultimaActividad[0]->fecha_ingreso;
-                } else {
-                    $_SESSION["ultimaActividad"] = '00-00-00 00:00:00';
-                }
-
                 redirect(base_url());
             } else {
                 $this->mensaje("Usuario o contraseña incorrectos", "error");
