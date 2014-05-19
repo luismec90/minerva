@@ -30,10 +30,10 @@ class Usuario extends CI_Controller {
         $this->verificarMatricula($idCurso);
         $puntajePorModulo = $this->modulo_model->puntajePorModuloPorCurso($idCurso);
         $tiempo = $this->bitacora_model->obtenerTiempoLogueado($idUsuario, $idCurso);
-        $tiempo = round($tiempo[0]->tiempo,1);
+        $tiempo = round($tiempo[0]->tiempo, 1);
         $escala = "horas";
         if ($tiempo >= 24) {
-            $tiempo = round(($tiempo / 24),1);
+            $tiempo = round(($tiempo / 24), 1);
             $escala = "días";
         }
         $lastLogin = $this->bitacora_model->lastLogin($idUsuario);
@@ -47,7 +47,11 @@ class Usuario extends CI_Controller {
 
 
 
-        <table class="table table-striped">
+        <table class="table">
+             <tr>
+                <td>Nivel</td>
+                <td> <img class="pull-left" height="60" src="<?= base_url() . "assets/img/niveles/{$matricula[0]->imagen}"; ?>"> <h3 class="pull-left"><?= $matricula[0]->nombre ?></h3></td>
+            </tr>
             <tr>
                 <td>Nombre:</td>
                 <td><?= $usuario[0]->nombres . " " . $usuario[0]->apellidos ?></td>
@@ -73,17 +77,14 @@ class Usuario extends CI_Controller {
                 <td>Correo:</td>
                 <td><?= $usuario[0]->correo ?></td>
             </tr>
-             <tr>
-                <td>Nivel</td>
-                <td><?= $matricula[0]->nombre ?></td>
-            </tr>
+           
             <tr>
                 <td>Módulo</td>
                 <td>Puntaje</td>
             </tr>
-                <?php
-                foreach ($puntajePorModulo as $row) {
-                    ?>
+            <?php
+            foreach ($puntajePorModulo as $row) {
+                ?>
                 <tr>
                     <td> <?= $row->nombre ?>:</td>
                     <td><?= $row->puntaje ?>
