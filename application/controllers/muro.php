@@ -14,6 +14,8 @@ class Muro extends CI_Controller {
     }
 
     public function index($idCurso = -1) {
+        $this->load->model('usuario_curso_logro_model');
+        
         $this->verificarMatricula($idCurso);
         $data["tab"] = "muro";
         $data["css"] = array("css/muro");
@@ -25,6 +27,11 @@ class Muro extends CI_Controller {
         $data["mensajes"] = $this->muro_model->obtenerMensajesCompletos($idCurso);
         foreach ($data["mensajes"] as $row) {
             $data["reply"][$row->id_muro] = $this->muro_model->obtenerRespuestas($row->id_muro);
+            if ($row->tipo == "logro") {
+                $logro = $this->usuario_curso_logro_model->obtenerLogro($row->mensaje);
+                $row->mensaje = "<h4 class='text-info'>  <img class='img-responsive col-xs-6 col-sm-3 col-md-2 col-lg-1' src='". base_url() . "assets/img/logro/{$logro[0]->id_logro}.png'> <span class='col-xs-12 col-sm-7'><br>He obtenido el logro: <b>{$logro[0]->nombre}</b></span></h4>
+                ";
+            }
         }
         $this->load->view('include/header', $data);
         $this->load->view('muro_view');

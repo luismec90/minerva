@@ -1,4 +1,4 @@
-base_url = "http://localhost/minerva/";
+
 $(function() {
     $(".formSubmit").submit(function() {
         $("#coverDisplay").css({
@@ -70,10 +70,10 @@ function modalInfoUsuario(idUsuario, idCurso) {
                 "height": "0"
             });
             $("#body-modal-info-usuario").html(data);
-              $("#modal-info-usuario").modal();
+            $("#modal-info-usuario").modal();
         }
     });
-  
+
 }
 
 function verificarNuevoLogro() {
@@ -88,6 +88,7 @@ function verificarNuevoLogro() {
                 $("#nombre-asignatura").html(value.nombre_asignatura);
                 $("#descripcion-logro").html(value.descripcion);
                 $("#fecha-logro").html(value.fecha_obtencion);
+                $("#idUsuarioCursoLogro").val(value.id_usuario_curso_logro);
                 urlFacebook = value.share_facebook;
                 urlTwitter = value.share_twitter;
                 $("#modalLogro").modal();

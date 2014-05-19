@@ -33,7 +33,7 @@ function getAPI()
             (window.opener != null) &&
             (typeof (window.opener) != "undefined"))
     {
-// try to find the API in the current window’s opener
+// try to find the API in the current windowï¿½s opener
         theAPI = findAPI(window.opener);
     }
 // if the API has not been found
@@ -48,8 +48,8 @@ function getAPI()
 var a, b, x, l1;
 
 $(function() {
-//    API = getAPI();
-    //  API.LMSInitialize("");
+    API = getAPI();
+    API.LMSInitialize("");
 
     l1 = getRandom(250, 290);
     a = getRandom(10, 50);
@@ -76,7 +76,7 @@ $(function() {
                     break;
                 case missConception1:
                     calificacion = 0.5;
-                    feedback = "Suma de los ángulos interiores de todo triángulo es de 270";
+                    feedback = "Suma de los ï¿½ngulos interiores de todo triï¿½ngulo es de 270";
                     $("#feedback").html("Calificaci&oacute;n: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
                     break;
                 default:
@@ -85,9 +85,11 @@ $(function() {
                     break;
             }
             $(this).attr("disabled", true);
-            //  API.calificar(calificacion, feedback);
-            // API.LMSSetValue("cmi.core.score.raw", calificacion);
-            // API.LMSFinish("feedback", feedback);
+            if (typeof API.calificar == 'function') {
+                API.calificar(calificacion, feedback);
+            }
+            API.LMSSetValue("cmi.core.score.raw", calificacion);
+            API.LMSFinish("feedback", feedback);
         }
     });
 });
@@ -128,8 +130,8 @@ function draw() {
     ctx.stroke();
 
     ctx.beginPath(); //iniciar ruta
-    ctx.strokeStyle = "FF9900"; //color de línea
-    ctx.lineWidth = 1; //grosor de línea
+    ctx.strokeStyle = "FF9900"; //color de lï¿½nea
+    ctx.lineWidth = 1; //grosor de lï¿½nea
     ctx.arc(x1, y1, 20, -ag, 0);
     ctx.stroke();
 

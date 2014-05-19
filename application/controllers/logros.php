@@ -47,6 +47,24 @@ class Logros extends CI_Controller {
         $this->load->view('include/footer');
     }
 
+    public function compartir() {
+        var_dump($_POST);
+        $this->load->model('muro_model');
+        $idUsuarioCursoLogro = $this->input->post('idUsuarioCursoLogro');
+        $logro = $this->usuario_curso_logro_model->obtenerRegistros(array("id_usuario_curso_logro" => $idUsuarioCursoLogro, "id_usuario" => $_SESSION["idUsuario"]));
+        if ($logro) {
+            $data = array("id_curso" => $logro[0]->id_curso,
+                "id_usuario" => $_SESSION["idUsuario"],
+                "mensaje" => $idUsuarioCursoLogro,
+                "tipo" => "logro"
+            );
+            $this->muro_model->crear($data);
+            $this->mensaje("Logro compartido exitosamente", "success", "muro/" . $logro[0]->id_curso);
+        } else {
+            $this->mensaje("Por favor inténtalo nuevamente", "error");
+        }
+    }
+
 }
 
 //http://leta.artrow.net/

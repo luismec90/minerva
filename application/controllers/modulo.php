@@ -38,6 +38,7 @@ class Modulo extends CI_Controller {
         }
 
         $data["materiales"] = $this->material_model->obtenerMaterialesPorModulo($idModulo);
+        $data["cantidadMateriales"] = sizeof($data["materiales"]);
         foreach ($data["materiales"] as $row) {
             $row->extension = substr(strrchr($row->ubicacion, '.'), 1);
             if ($row->extension != "pdf") {
@@ -137,6 +138,7 @@ class Modulo extends CI_Controller {
 
         $data["topN"] = $topN = $this->calcultarTopN($idModulo, 10, $idCurso);
         $data["evaluaciones"] = $evaluaciones;
+        $data["cantidadEvaluaciones"] = sizeof($evaluaciones);
         $this->load->view('include/header', $data);
         $this->load->view('modulo_view');
         $this->load->view('include/footer');

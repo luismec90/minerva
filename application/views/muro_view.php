@@ -32,7 +32,7 @@
                 <div  class="col-xs-9 col-sm-9 col-md-10 col-lg-11">
                     <div class="row">
                         <div  class="col-xs-12">
-                            <small><?= $row->nombres . " " . $row->apellidos ?> |</small>  <small class="text-muted text-right"><?= $row->fecha_creacion ?></small>
+                            <small><?= $row->nombres . " " . $row->apellidos ?> </small>  <small class="text-muted text-right"><?= $row->fecha_creacion ?></small>
                         </div>
                     </div>
                     <div>
@@ -46,16 +46,16 @@
                     <?php foreach ($reply[$row->id_muro] as $row2) { ?>
                         <div class="row">
                             <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">
-                                <img class="img-responsive col-xs-12 info-usuario cursor" data-id-usuario="<?= $row2->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/<?= $row->imagen ?>">
+                                <img class="img-responsive col-xs-12 info-usuario cursor" data-id-usuario="<?= $row2->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/<?= $row2->imagen ?>">
                             </div>
                             <div  class="col-xs-8 col-sm-9 col-md-10 col-lg-11">
                                 <div class="row">
                                     <div  class="col-xs-12">
-                                        <small><?= $row2->nombres . " " . $row2->apellidos ?> |</small>  <small class="text-muted text-right"><?= $row2->fecha_creacion ?></small> 
+                                        <small><?= $row2->nombres . " " . $row2->apellidos ?> </small>  <small class="text-muted text-right"><?= $row2->fecha_creacion ?></small> 
                                     </div>
                                 </div>
                                 <div>
-                                    <pre><?php if ($row->id_usuario == $_SESSION["idUsuario"]) { ?><a class="eliminar glyphicon glyphicon-remove pull-right" data-id-mensaje="<?= $row2->id_muro ?>"></a> <?php } ?><?= $row2->mensaje ?></pre>
+                                    <pre><?php if ($row2->id_usuario == $_SESSION["idUsuario"]) { ?><a class="eliminar glyphicon glyphicon-remove pull-right" data-id-mensaje="<?= $row2->id_muro ?>"></a> <?php } ?><?= $row2->mensaje ?></pre>
                                 </div>
                             </div>
 

@@ -6,53 +6,54 @@
 
             </div>  
         </div> 
+        <?php if ($cantidadMateriales || $_SESSION["rol"] == "profesor") { ?>
+            <div id="div-material" class="col-xs-12 col-sm-12 <?= ($cantidadEvaluaciones || $_SESSION["rol"] == "profesor") ? "col-md-4" : "col-md-9" ?> <?= ($_SESSION["rol"] == "profesor") ? "profesor" : "" ?>">
+                <div class="widget-box">
+                    <div class="widget-header header-color-green2">
+                        <?php if ($_SESSION["rol"] == "profesor") { ?>
 
-        <div id="div-material" class="col-xs-12 col-sm-12 col-md-4  <?= ($_SESSION["rol"] == "profesor") ? "profesor" : "" ?>">
-            <div class="widget-box">
-                <div class="widget-header header-color-green2">
-                    <?php if ($_SESSION["rol"] == "profesor") { ?>
+                            <button title="Ordenar materiales" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalOrdenarMaterial"> <i class="fa fa-plus"></i> Oredenar materiales</button>                  
+                            <button title="Crear material" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCrearMaterial"> <i class="fa fa-plus"></i> Crear material</button>  
+                        <?php } ?>
+                        <h4 class="lighter smaller">Materiales</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
 
-                        <button title="Ordenar materiales" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalOrdenarMaterial"> <i class="fa fa-plus"></i> Oredenar materiales</button>                  
-                        <button title="Crear material" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCrearMaterial"> <i class="fa fa-plus"></i> Crear material</button>  
-                    <?php } ?>
-                    <h4 class="lighter smaller">Materiales</h4>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-
-                        <table  id="lista-material" class="table table-hover">
-                            <?php
-                            $t = sizeof($materiales);
-                            $i = 1;
-                            foreach ($materiales as $row) {
-                                ?>
-                                <tr>
-                                    <td class="tdIcono">
-                                        <img class="icono  icono-<?= $row->extension ?>">
-                                    </td>
-                                    <td class="no-padding-left">
-                                        <span class="<?= $row->extension ?> link-material" data-ubicacion="<?= $row->ubicacion ?>" data-id-material="<?= $row->id_material ?>"  data-toggle="popover" data-placement="<?= ($i == $t) ? "top" : "bottom" ?>" data-content="<?= $row->descripcion ?>"><?= $row->nombre ?></span>
-                                        <?php if ($row->visto) { ?><i class="fa fa-check"></i><span class="tiempo"><?= $row->tiempo_total ?>m</span> <?php } ?> 
-                                        <br>  
-                                        <div id="star-<?= $row->id_material ?>" class="estrellas" data-score="<?= $row->puntaje_promedio ?>" data-id-material="<?= $row->id_material ?>" data-comentario="<?= $row->comentario ?>"></div><span class="text-muted"> (<?= $row->total_valoraciones ?>)</span>
-                                        <a href="#" class="ver-comentarios" data-id-material="<?= $row->id_material ?>" data-toggle="modal" data-target="#modalVerValoracionesMaterial">Ver comentarios</a> <span class="text-muted"> (<?= $row->total_comentarios ?>)</span>
-                                    </td>
-                                    <?php if ($_SESSION["rol"] == "profesor") { ?>
-                                        <td class="min-with-estudiante">
-                                            <button title="Editar material" class="btn btn-warning btn-size-custom-1 editarMaterial" data-toggle="modal" data-target="#modalEditarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>" data-descripcion="<?= $row->descripcion ?>"> <i class="fa fa-pencil-square-o"></i></button>
-                                            <button title="Eliminar material" class="btn btn-danger btn-size-custom-1 eliminarMaterial" data-toggle="modal" data-target="#modalEliminarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>"><i class="fa fa-trash-o"></i></button>
+                            <table  id="lista-material" class="table table-hover">
+                                <?php
+                                $t = sizeof($materiales);
+                                $i = 1;
+                                foreach ($materiales as $row) {
+                                    ?>
+                                    <tr>
+                                        <td class="tdIcono">
+                                            <img class="icono  icono-<?= $row->extension ?>">
                                         </td>
-                                    <?php } ?>
-                                <tr>
-                                    <?php
-                                    $i++;
-                                }
-                                ?>
-                        </table>
+                                        <td class="no-padding-left">
+                                            <span class="<?= $row->extension ?> link-material" data-ubicacion="<?= $row->ubicacion ?>" data-id-material="<?= $row->id_material ?>"  data-toggle="popover" data-placement="<?= ($i == $t) ? "top" : "bottom" ?>" data-content="<?= $row->descripcion ?>"><?= $row->nombre ?></span>
+                                            <?php if ($row->visto) { ?><i class="fa fa-check"></i><span class="tiempo"><?= $row->tiempo_total ?>m</span> <?php } ?> 
+                                            <br>  
+                                            <div id="star-<?= $row->id_material ?>" class="estrellas" data-score="<?= $row->puntaje_promedio ?>" data-id-material="<?= $row->id_material ?>" data-comentario="<?= $row->comentario ?>"></div><span class="text-muted"> (<?= $row->total_valoraciones ?>)</span>
+                                            <a href="#" class="ver-comentarios" data-id-material="<?= $row->id_material ?>" data-toggle="modal" data-target="#modalVerValoracionesMaterial">Ver comentarios</a> <span class="text-muted"> (<?= $row->total_comentarios ?>)</span>
+                                        </td>
+                                            <?php if ($_SESSION["rol"] == "profesor") { ?>
+                                            <td class="min-with-estudiante">
+                                                <button title="Editar material" class="btn btn-warning btn-size-custom-1 editarMaterial" data-toggle="modal" data-target="#modalEditarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>" data-descripcion="<?= $row->descripcion ?>"> <i class="fa fa-pencil-square-o"></i></button>
+                                                <button title="Eliminar material" class="btn btn-danger btn-size-custom-1 eliminarMaterial" data-toggle="modal" data-target="#modalEliminarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>"><i class="fa fa-trash-o"></i></button>
+                                            </td>
+                                        <?php } ?>
+                                    <tr>
+                                        <?php
+                                        $i++;
+                                    }
+                                    ?>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
         <div id="div-canvas"  class="col-xs-12 col-sm-12 col-md-3">
             <div id="imagen" class="media-image">
                 <img src="../assets/img/p2.png" class="media-image">
@@ -64,7 +65,8 @@
                     <i class="fa fa-trophy"></i> Ranking</span>
             </div>
         </div>
-        <div  id="div-evaluaciones" class="col-xs-12 col-sm-12 col-md-5">
+         <?php if ($cantidadEvaluaciones || $_SESSION["rol"] == "profesor") { ?>
+        <div  id="div-evaluaciones" class="col-xs-12 col-sm-12 <?= ($cantidadMateriales || $_SESSION["rol"] == "profesor") ? "col-md-5" : "col-md-9" ?>">
             <div id="container-evaluaciones" >
                 <div class="widget-box">
                     <div class="widget-header header-color-green2">
@@ -123,6 +125,7 @@
                 </div>
             </div>
         </div>
+         <?php } ?>
     </div>
 </div>
 <div id="contenedor-video" class="hide">

@@ -54,11 +54,8 @@
 
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div id="contenedor" class="container" >
-            <div class="row">
-            <div id="correcto" class="alert alert-success hide col-sm-6 col-sm-offset-3">Respuesta correcta</div>
-            <div id="feedback" class="alert alert-warning hide col-sm-6 col-sm-offset-3"></div>
-            </div>
+        <div id="contenedor" class="container-fluid">
+
             <h1>Cuál es el valor del ángulo x?</h1>
             <canvas id="canvas" width="300" height="220">
             </canvas>
@@ -74,6 +71,25 @@
         <div id="miToolTip" class="tooltip fade bottom in hide">
             <div class="tooltip-arrow"></div>
             <div id="contenidoTooltip" class="tooltip-inner">
+            </div>
+        </div>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Resultados</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div id="correcto" class="alert alert-success hide col-xs-12">Respuesta correcta</div>
+                            <div id="feedback" class="alert alert-warning hide col-xs-12"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="aceptar" href="" class="btn btn-primary">Aceptar</a>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

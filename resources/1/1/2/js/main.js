@@ -85,6 +85,11 @@ $(function() {
                     break;
             }
             $(this).attr("disabled", true);
+            $("#modal").modal({
+                backdrop: "static",
+                keyboard: "false"
+            });
+
             if (typeof API.calificar == 'function') {
                 API.calificar(calificacion, feedback);
             }
@@ -92,6 +97,13 @@ $(function() {
             API.LMSFinish("feedback", feedback);
         }
     });
+    $("#aceptar").click(function() {
+        window.parent.location.reload();
+    });
+    $('#modal').on('hide.bs.modal', function(e) {
+        window.parent.location.reload();
+    });
+
 });
 function getRandom(bottom, top) {
     return Math.floor(Math.random() * (1 + top - bottom)) + bottom;
