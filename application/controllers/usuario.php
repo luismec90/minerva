@@ -26,7 +26,7 @@ class Usuario extends CI_Controller {
         $idUsuario = $_GET["idUsuario"];
         $usuario = $this->usuario_model->obtenerUsuario(array("id_usuario" => $idUsuario));
         $data = array("id_curso" => $idCurso, "id_usuario" => $idUsuario);
-        $matricula = $this->usuario_x_curso_model->obtenerRegistro($data);
+        $matricula = $this->usuario_x_curso_model->obtenerRegistroCompleto($data);
         $this->verificarMatricula($idCurso);
         $puntajePorModulo = $this->modulo_model->puntajePorModuloPorCurso($idCurso);
         $tiempo = $this->bitacora_model->obtenerTiempoLogueado($idUsuario, $idCurso);
@@ -73,10 +73,14 @@ class Usuario extends CI_Controller {
                 <td>Correo:</td>
                 <td><?= $usuario[0]->correo ?></td>
             </tr>
+             <tr>
+                <td>Nivel</td>
+                <td><?= $matricula[0]->nombre ?></td>
+            </tr>
             <tr>
                 <td>Módulo</td>
                 <td>Puntaje</td>
-            <tr>
+            </tr>
                 <?php
                 foreach ($puntajePorModulo as $row) {
                     ?>

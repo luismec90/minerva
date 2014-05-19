@@ -113,10 +113,10 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class=" nav  navbar-nav">
+                            <li class=" nav  navbar-nav <?= ($tab == "registrarse") ? "active" : "" ?>">
                                 <a class="white cursor" href="<?= base_url() ?>registrarse"> Registrarse</a>
                             </li>
-                            <li class=" nav  navbar-nav">
+                            <li class=" nav  navbar-nav" <?= ($tab == "recuperar") ? "active" : "" ?>">
                                 <a class="white cursor" href="<?= base_url() ?>recuperar"> ¿Olvidó su contraseña?</a>
                             </li>
                         <?php } ?>

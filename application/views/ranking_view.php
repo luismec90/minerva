@@ -12,7 +12,7 @@
                 <a href="<?= base_url() ?>ranking/<?= $idCurso ?>?limit=100" class="btn btn-primary <?= ($limit == 100) ? "active" : ""; ?>">Top 100</a>
                 <a href="<?= base_url() ?>ranking/<?= $idCurso ?>?limit=200" class="btn btn-primary <?= ($limit == 200) ? "active" : ""; ?>">Top 200</a>
                 <a href="<?= base_url() ?>ranking/<?= $idCurso ?>?limit=500" class="btn btn-primary <?= ($limit == 500) ? "active" : ""; ?>">Top 500</a>
-                <a href="<?= base_url() ?>ranking/<?= $idCurso ?>?limit=1000" class="btn btn-primary <?= ($limit == 1000) ? "active" : ""; ?>"> Top 1000</a>
+                <a href="<?= base_url() ?>ranking/<?= $idCurso ?>?limit=all" class="btn btn-primary <?= ($limit == "all") ? "active" : ""; ?>"> Todos</a>
                 <br> <br>
             </div>
         </div>
@@ -55,7 +55,7 @@
                         <?php
                         $i = 1;
                         foreach ($posiciones as $row) {
-                            if ($i > $limit) {
+                            if ($limit != "all" && $i > $limit) {
                                 break;
                             }
                             ?>

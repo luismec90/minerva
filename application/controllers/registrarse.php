@@ -14,7 +14,7 @@ class Registrarse extends CI_Controller {
     public function index() {
         $this->load->model('afiliacion_model');
 
-        $data["tab"] = "registrase";
+        $data["tab"] = "registrarse";
         $data["css"] = array("css/registrase");
         $data["afiliaciones"] = $this->afiliacion_model->obtenerAfiliaciones();
         $this->load->view('include/header', $data);
