@@ -60,18 +60,41 @@ class Perfil extends CI_Controller {
     }
 
     private function avatar($usuario) {
+        $this->load->library('image_lib');
+
         if ($_FILES["file"]["name"]) {
             if ($usuario[0]->imagen != "default.png" && file_exists("assets/img/avatares/{$usuario[0]->imagen}")) {
                 unlink("assets/img/avatares/{$usuario[0]->imagen}");
             }
             $extension = explode(".", $_FILES["file"]["name"]);
-            $extension = end($extension);
+            $extension = strtolower(end($extension));
             $nombreAvatar = $_SESSION["idUsuario"] . "." . $extension;
-            move_uploaded_file($_FILES["file"]["tmp_name"], "assets/img/avatares/$nombreAvatar");
+            $ruta = "assets/img/avatares/$nombreAvatar";
+            move_uploaded_file($_FILES["file"]["tmp_name"], $ruta);
+            $this->thumbnail($nombreAvatar);
             return $nombreAvatar;
         } else {
             return $usuario[0]->imagen;
         }
+    }
+
+    private function thumbnail($imagen) {
+        $source_path = "assets/img/avatares/$imagen";
+
+        $target_path = "assets/img/avatares/thumbnails/";
+        $config_manip = array(
+            'image_library' => 'gd2',
+            'source_image' => $source_path,
+            'new_image' => $target_path,
+            'maintain_ratio' => TRUE,
+            'create_thumb' => TRUE,
+            'thumb_marker' => '',
+            'width' => 150,
+            'height' => 150
+        );
+        $this->load->library('image_lib');
+        $this->image_lib->initialize($config_manip);
+        $this->image_lib->resize();
     }
 
 }

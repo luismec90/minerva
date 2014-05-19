@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row">
-                <img class="img-responsive col-xs-3 col-sm-3 col-md-2 col-lg-1 info-usuario cursor" data-id-usuario="<?= $row->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/<?= $row->imagen ?>">
+                <img class="img-responsive col-xs-3 col-sm-3 col-md-2 col-lg-1 info-usuario cursor" data-id-usuario="<?= $row->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/thumbnails/<?= $row->imagen ?>">
                 <div  class="col-xs-9 col-sm-9 col-md-10 col-lg-11">
                     <div class="row">
                         <div  class="col-xs-12">
@@ -46,7 +46,7 @@
                     <?php foreach ($reply[$row->id_muro] as $row2) { ?>
                         <div class="row">
                             <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">
-                                <img class="img-responsive col-xs-12 info-usuario cursor" data-id-usuario="<?= $row2->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/<?= $row2->imagen ?>">
+                                <img class="img-responsive col-xs-12 info-usuario cursor" data-id-usuario="<?= $row2->id_usuario ?>" data-id-curso="<?= $idCurso ?>" src="<?= base_url() ?>assets/img/avatares/thumbnails/<?= $row2->imagen ?>">
                             </div>
                             <div  class="col-xs-8 col-sm-9 col-md-10 col-lg-11">
                                 <div class="row">

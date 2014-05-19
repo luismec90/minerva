@@ -58,7 +58,7 @@ class Usuario extends CI_Controller {
             </tr>
             <tr>
                 <td>Avatar:</td>
-                <td><img height="100" src="<?= base_url() . "assets/img/avatares/{$usuario[0]->imagen}"; ?>"></td>
+                <td><img height="100" src="<?= base_url() . "assets/img/avatares/thumbnails/{$usuario[0]->imagen}"; ?>"></td>
             </tr>
             <?php if (sizeof($logros) > 0) { ?>
                 <tr>
