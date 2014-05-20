@@ -32,7 +32,7 @@ class Usuario_x_modulo_model extends CI_Model {
     }
 
     function rankingCurso($idCurso) {
-        $query = "SELECT u.id_usuario,u.nombres,u.apellidos,SUM(um.puntaje) puntaje_total
+        $query = "SELECT u.id_usuario,u.nombres,u.apellidos,u.imagen,SUM(um.puntaje) puntaje_total
                   FROM usuario_x_modulo um
                   JOIN modulo m ON m.id_modulo=um.id_modulo
                   JOIN usuario u ON u.id_usuario=um.id_usuario AND u.rol='estudiante'

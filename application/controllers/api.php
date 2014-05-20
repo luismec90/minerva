@@ -107,7 +107,7 @@ class Api extends CI_Controller {
         if ($vecesAprobadaEvaluacion[0]->total == 1) {
             $modulo = $this->modulo_model->obtenerModuloConEvaluacion($idEvaluacion);
             $idModulo = $modulo[0]->id_modulo;
-            $intentos = $this->usuario_x_evaluacion_model->obtenerIntentos($idModulo);
+            $intentos = $this->usuario_x_evaluacion_model->obtenerIntentos($idEvaluacion);
             $valorMaximo = 250;
             $valorMinimo = 150;
             $puntajeTotal = 0;
@@ -116,7 +116,6 @@ class Api extends CI_Controller {
                 if (!array_key_exists($row->id_evaluacion, $array)) {
                     $array[$row->id_evaluacion] = array('id_usuario_evaluacion' => $row->id_usuario_evaluacion, 'puntaje' => $valorMaximo, 'calificacion' => $row->calificacion, 'flag' => true);
                 }
-
                 if ($array[$row->id_evaluacion]['flag'] && $row->calificacion < $umbral) {
                     $array[$row->id_evaluacion]['puntaje'] -=(10 - 10 * $row->calificacion);
                 } else if ($array[$row->id_evaluacion]['flag']) {
@@ -127,7 +126,7 @@ class Api extends CI_Controller {
             $where = array("id_usuario" => $_SESSION["idUsuario"], "id_modulo" => $idModulo);
             $existe = $this->usuario_x_modulo_model->obtenerRegistro($where);
             if ($existe) {
-                $data = array("puntaje" => $puntajeTotal);
+                $data = array("puntaje" => $puntajeTotal+$existe[0]->puntaje);
                 $where = array("id_usuario_modulo" => $existe[0]->id_usuario_modulo);
                 $this->usuario_x_modulo_model->actualizar($data, $where);
             } else {

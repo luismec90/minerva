@@ -47,6 +47,7 @@
                     <thead>
                         <tr>
                             <th>Puesto</th>
+                            <th>Avatar</th>
                             <th>Nombre</th>
                             <th>Puntaje</th>
                         </tr>
@@ -61,6 +62,7 @@
                             ?>
                             <tr class="<?= ($row->id_usuario == $_SESSION["idUsuario"]) ? "info" : ""; ?>">
                                 <td><?= $i++ ?></td>
+                                <td><img class="img-responsive col-xs-8 col-sm-3 col-md-2  info-usuario cursor" data-id-curso="<?= $idCurso ?>" data-id-usuario="<?= $row->id_usuario ?>" src="<?= base_url()?>assets/img/avatares/thumbnails/<?= $row->imagen ?>"></td>
                                 <td><?= $row->nombres . " " . $row->apellidos ?></td>
                                 <td><?= $row->puntaje_total ?></td>
                             </tr>

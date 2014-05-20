@@ -24,11 +24,11 @@ class Usuario_x_evaluacion_model extends CI_Model {
         return $this->db->query($query)->result();
     }
 
-    function obtenerIntentos($idModulo) {
+    function obtenerIntentos($idEvaluacion) {
         $query = "SELECT ue.*
                  FROM usuario_x_evaluacion ue
                  JOIN evaluacion e ON e.id_evaluacion=ue.id_evaluacion
-                 WHERE e.id_modulo='$idModulo'
+                 WHERE e.id_evaluacion='$idEvaluacion'
                  AND ue.id_usuario='{$_SESSION["idUsuario"]}'";
         return $this->db->query($query)->result();
     }
