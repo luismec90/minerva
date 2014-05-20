@@ -173,7 +173,7 @@
 #botonCerrarPdf,#botonCerrarFrame{
     width:30px;
     height:30px;
-    margin-right: -32px;
+    margin-right: 0;
     position: absolute;
     right:0;
     z-index: 1700;
@@ -527,7 +527,7 @@ iframe{
     margin: 0 6px 0 6px;
 }
 #imagen {
-  text-align: center;
+    text-align: center;
 }
 #imagen{
     position: relative;
@@ -536,8 +536,8 @@ iframe{
 }
 
 .widget-header .btn{
-margin-top: 2px;
-margin-left: 5px;
+    margin-top: 2px;
+    margin-left: 5px;
 }
 #posicionModulo{
     position: absolute;
@@ -548,4 +548,16 @@ margin-left: 5px;
 }
 .estrellas{
     display: inline-block;
+}
+@media screen and (max-width: 800px) {
+    #frame{
+        width: 100%;
+        height: 100%;
+    }
+    #contenedor-pdf,#contenedor-frame{
+        width:100%;
+        height: 100%;
+        margin-left:0;
+        left:0;
+    }
 }
