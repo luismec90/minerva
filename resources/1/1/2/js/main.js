@@ -1,50 +1,3 @@
-findAPITries = 0;
-
-function findAPI(win)
-{
-// Check to see if the window (win) contains the API
-// if the window (win) does not contain the API and
-// the window (win) has a parent window and the parent window
-// is not the same as the window (win)
-    while ((win.API == null) && (win.parent != null) && (win.parent != win))
-    {
-// increment the number of findAPITries
-        findAPITries++;
-// Note: 7 is an arbitrary number, but should be more than sufficient
-        if (findAPITries > 7)
-        {
-            alert("Error finding API -- too deeply nested.");
-            return null;
-        }
-// set the variable that represents the window being
-// being searched to be the parent of the current window
-// then search for the API again
-        win = win.parent;
-    }
-    return win.API;
-}
-function getAPI()
-{
-// start by looking for the API in the current window
-    var theAPI = findAPI(window);
-// if the API is null (could not be found in the current window)
-// and the current window has an opener window
-    if ((theAPI == null) &&
-            (window.opener != null) &&
-            (typeof (window.opener) != "undefined"))
-    {
-// try to find the API in the current window�s opener
-        theAPI = findAPI(window.opener);
-    }
-// if the API has not been found
-    if (theAPI == null)
-    {
-// Alert the user that the API Adapter could not be found
-        alert("Unable to find an API adapter");
-    }
-    return theAPI;
-}
-
 var a, b, x, l1;
 
 $(function() {
@@ -72,16 +25,16 @@ $(function() {
             switch (valor) {
                 case correctAnswer:
                     calificacion = 1.0;
-                    $("#correcto").html("Calificaci&oacute;n: <b>" + calificacion + "</b>").removeClass("hide");
+                    $("#correcto").html("Calificación: <b>" + calificacion + "</b>").removeClass("hide");
                     break;
                 case missConception1:
                     calificacion = 0.5;
-                    feedback = "Suma de los �ngulos interiores de todo tri�ngulo es de 270";
-                    $("#feedback").html("Calificaci&oacute;n: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
+                    feedback = "Suma de los ángulos interiores de todo triángulo es de 270";
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
                     break;
                 default:
                     calificacion = 0.0;
-                    $("#feedback").html("Calificaci&oacute;n: <b>" + calificacion + "</b> <br>Te recomendamos este <a href='http://www.youtube.com/watch?v=8QccEGEBBTM' target='_blank'>video</a> acerca de triangulos.").removeClass("hide");
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br>Te recomendamos este <a href='http://www.youtube.com/watch?v=8QccEGEBBTM' target='_blank'>video</a> acerca de triangulos.").removeClass("hide");
                     break;
             }
             $(this).attr("disabled", true);
@@ -142,8 +95,8 @@ function draw() {
     ctx.stroke();
 
     ctx.beginPath(); //iniciar ruta
-    ctx.strokeStyle = "FF9900"; //color de l�nea
-    ctx.lineWidth = 1; //grosor de l�nea
+    ctx.strokeStyle = "FF9900"; //color de lï¿½nea
+    ctx.lineWidth = 1; //grosor de lï¿½nea
     ctx.arc(x1, y1, 20, -ag, 0);
     ctx.stroke();
 
