@@ -37,7 +37,7 @@
                                             <div id="star-<?= $row->id_material ?>" class="estrellas" data-score="<?= $row->puntaje_promedio ?>" data-id-material="<?= $row->id_material ?>" data-comentario="<?= $row->comentario ?>"></div><span class="text-muted"> (<?= $row->total_valoraciones ?>)</span>
                                             <a href="#" class="ver-comentarios" data-id-material="<?= $row->id_material ?>" data-toggle="modal" data-target="#modalVerValoracionesMaterial">Ver comentarios</a> <span class="text-muted"> (<?= $row->total_comentarios ?>)</span>
                                         </td>
-                                            <?php if ($_SESSION["rol"] == "profesor") { ?>
+                                        <?php if ($_SESSION["rol"] == "profesor") { ?>
                                             <td class="min-with-estudiante">
                                                 <button title="Editar material" class="btn btn-warning btn-size-custom-1 editarMaterial" data-toggle="modal" data-target="#modalEditarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>" data-descripcion="<?= $row->descripcion ?>"> <i class="fa fa-pencil-square-o"></i></button>
                                                 <button title="Eliminar material" class="btn btn-danger btn-size-custom-1 eliminarMaterial" data-toggle="modal" data-target="#modalEliminarMaterial" data-id-material="<?= $row->id_material ?>" data-nombre="<?= $row->nombre ?>"><i class="fa fa-trash-o"></i></button>
@@ -65,67 +65,67 @@
                     <i class="fa fa-trophy"></i> Ranking</span>
             </div>
         </div>
-         <?php if ($cantidadEvaluaciones || $_SESSION["rol"] == "profesor") { ?>
-        <div  id="div-evaluaciones" class="col-xs-12 col-sm-12 <?= ($cantidadMateriales || $_SESSION["rol"] == "profesor") ? "col-md-5" : "col-md-9" ?>">
-            <div id="container-evaluaciones" >
-                <div class="widget-box">
-                    <div class="widget-header header-color-green2">
-                        <?php if ($_SESSION["rol"] == "profesor") { ?>
-                            <button title="Ordenar evaluaciones" id="ordenarEvaluaciones"  class="btn btn-default pull-right" data-toggle="modal" data-target="#modalOrdenarEvaluacion"> <i class="fa fa-plus"></i>  Ordenar evaluaciones</button>                  
-                            <button title="Crear evaluaciones" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCrearEvaluacion"> <i class="fa fa-plus"></i> Crear evaluación</button>                  
+        <?php if ($cantidadEvaluaciones || $_SESSION["rol"] == "profesor") { ?>
+            <div  id="div-evaluaciones" class="col-xs-12 col-sm-12 <?= ($cantidadMateriales || $_SESSION["rol"] == "profesor") ? "col-md-5" : "col-md-9" ?>">
+                <div id="container-evaluaciones" >
+                    <div class="widget-box">
+                        <div class="widget-header header-color-green2">
+                            <?php if ($_SESSION["rol"] == "profesor") { ?>
+                                <button title="Ordenar evaluaciones" id="ordenarEvaluaciones"  class="btn btn-default pull-right" data-toggle="modal" data-target="#modalOrdenarEvaluacion"> <i class="fa fa-plus"></i>  Ordenar evaluaciones</button>                  
+                                <button title="Crear evaluaciones" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCrearEvaluacion"> <i class="fa fa-plus"></i> Crear evaluación</button>                  
 
 
-                        <?php } ?>
-                        <h4 class="lighter smaller">Evaluaciones
+                            <?php } ?>
+                            <h4 class="lighter smaller">Evaluaciones
 
 
-                        </h4>
-                    </div>
+                            </h4>
+                        </div>
 
-                    <div class="widget-body">
-                        <div class="widget-main filas padding-8">
-                            <div class="row">
-                                <?php
-                                $t = sizeof($evaluaciones);
-                                $i = 1;
-                                foreach ($evaluaciones as $row) {
-                                    if ($row->tipo == "seleccionmultiple") {
-                                        $tipo = "glyphicon-list";
-                                    } else if ($row->tipo == "respuestalibre") {
-                                        $tipo = "glyphicon-pencil";
-                                    } else if ($row->tipo == "desafio") {
-                                        $tipo = "glyphicon-tower";
+                        <div class="widget-body">
+                            <div class="widget-main filas padding-8">
+                                <div class="row">
+                                    <?php
+                                    $t = sizeof($evaluaciones);
+                                    $i = 1;
+                                    foreach ($evaluaciones as $row) {
+                                        if ($row->id_tipo_evaluacion == 1) {
+                                            $tipo = "glyphicon-list";
+                                        } else if ($row->id_tipo_evaluacion == 2) {
+                                            $tipo = "glyphicon-pencil";
+                                        } else if ($row->id_tipo_evaluacion == 3) {
+                                            $tipo = "glyphicon-tower";
+                                        }
+                                        ?>
+                                        <div class="boxEvaluaciones">
+                                            <div id="evaluacion-<?= $row->id_evaluacion ?>" class="boxEvaluaciones2 <?= $row->estatus ?>" data-ubicacion="<?= $row->ubicacion ?>" data-id-evaluacion="<?= $row->id_evaluacion ?>">
+                                                <div class="icono fa fa-<?= $row->icono ?> fa-2x"></div>     
+                                                <div class="numeroEvaluacion"><?= $i ?></div>
+                                                <?php if ($row->estatus != "lock") { ?>
+                                                    <div class="tipo glyphicon <?= $tipo ?>"></div>
+                                                <?php } ?>
+                                                <div class="intentos"><?= $row->veces_aprobado ?>/<?= $row->veces_intentado ?></div>
+                                                <div class="puntaje"><?= $row->puntuacion ?><span class="glyphicon glyphicon-star"></span></div>
+                                                <div class="tiempo"><?= $row->menor_tiempo ?><span class="glyphicon glyphicon glyphicon-time"></span></div>
+                                            </div>
+                                            <?php if ($_SESSION["rol"] == "profesor") { ?>
+                                                <div class="opciones">
+                                                    <button title="Editar material" class="btn btn-warning btn-size-custom-1 editarEvaluacion"  data-toggle="modal" data-target="#modalEditarEvaluacion"  data-id-evaluacion="<?= $row->id_evaluacion ?>" data-tipo="<?= $row->id_tipo_evaluacion ?>"> <i class="fa fa-pencil-square-o"></i></button>
+                                                    <button title="Eliminar material" class="btn btn-danger btn-size-custom-1 eliminarEvaluacion"  data-toggle="modal" data-target="#modalEliminarEvaluacion"  data-id-evaluacion="<?= $row->id_evaluacion ?>" data-numero="<?= $i ?>"><i class="fa fa-trash-o"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                        <?php
+                                        $i++;
                                     }
                                     ?>
-                                    <div class="boxEvaluaciones">
-                                        <div id="evaluacion-<?= $row->id_evaluacion ?>" class="boxEvaluaciones2 <?= $row->estatus ?>" data-ubicacion="<?= $row->ubicacion ?>" data-id-evaluacion="<?= $row->id_evaluacion ?>">
-                                            <div class="icono fa fa-<?= $row->icono ?> fa-2x"></div>     
-                                            <div class="numeroEvaluacion"><?= $i ?></div>
-                                            <?php if ($row->estatus != "lock") { ?>
-                                                <div class="tipo glyphicon <?= $tipo ?>"></div>
-                                            <?php } ?>
-                                            <div class="intentos"><?= $row->veces_aprobado ?>/<?= $row->veces_intentado ?></div>
-                                            <div class="puntaje"><?= $row->puntuacion ?><span class="glyphicon glyphicon-star"></span></div>
-                                            <div class="tiempo"><?= $row->menor_tiempo ?><span class="glyphicon glyphicon glyphicon-time"></span></div>
-                                        </div>
-                                        <?php if ($_SESSION["rol"] == "profesor") { ?>
-                                            <div class="opciones">
-                                                <button title="Editar material" class="btn btn-warning btn-size-custom-1 editarEvaluacion"  data-toggle="modal" data-target="#modalEditarEvaluacion"  data-id-evaluacion="<?= $row->id_evaluacion ?>" data-tipo="<?= $row->tipo ?>"> <i class="fa fa-pencil-square-o"></i></button>
-                                                <button title="Eliminar material" class="btn btn-danger btn-size-custom-1 eliminarEvaluacion"  data-toggle="modal" data-target="#modalEliminarEvaluacion"  data-id-evaluacion="<?= $row->id_evaluacion ?>" data-numero="<?= $i ?>"><i class="fa fa-trash-o"></i></button>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                    <?php
-                                    $i++;
-                                }
-                                ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-         <?php } ?>
+        <?php } ?>
     </div>
 </div>
 <div id="contenedor-video" class="hide">
@@ -317,9 +317,9 @@
                             <div class="controls">
                                 <select name="tipoEvaluacion" class="form-control" required>
                                     <option value="">Seleccionar...</option>
-                                    <option value="seleccionmultiple">Selección multiple</option>
-                                    <option value="respuestalibre">Respuesta libre</option>
-                                    <option value="desafio">Desafio</option>
+                                    <option value="1">Selección multiple</option>
+                                    <option value="2">Respuesta libre</option>
+                                    <option value="3">Desafio</option>
                                 </select>
                             </div>
                         </div>
@@ -365,9 +365,9 @@
                             <div class="controls">
                                 <select id="editarTipoEvaluacion" name="tipoEvaluacion" class="form-control" required>
                                     <option value="">Seleccionar...</option>
-                                    <option value="seleccionmultiple">Selección multiple</option>
-                                    <option value="respuestalibre">Respuesta libre</option>
-                                    <option value="desafio">Desafio</option>
+                                    <option value="1">Selección multiple</option>
+                                    <option value="2">Respuesta libre</option>
+                                    <option value="3">Desafio</option>
                                 </select>
                             </div>
                         </div>

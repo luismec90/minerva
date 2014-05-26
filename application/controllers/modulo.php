@@ -61,7 +61,6 @@ class Modulo extends CI_Controller {
 
         $curso = $this->curso_model->obtenerCurso($idCurso);
         $umbral = $curso[0]->umbral;
-        $valorMaximo = 250;
         $valorMinimo = 150;
         $datos = $this->evaluacion_model->obtenerIntentosAprobados($idModulo, $_SESSION["idUsuario"]);
 
@@ -73,7 +72,7 @@ class Modulo extends CI_Controller {
             if (!array_key_exists("veces_aprobado", $infoEvaluacion[$row->id_evaluacion])) {
                 $infoEvaluacion[$row->id_evaluacion]["veces_aprobado"] = 0;
                 $infoEvaluacion[$row->id_evaluacion]["veces_intentado"] = 0;
-                $infoEvaluacion[$row->id_evaluacion]["puntuacion"] = $valorMaximo;
+                $infoEvaluacion[$row->id_evaluacion]["puntuacion"] = $row->valor;
                 $infoEvaluacion[$row->id_evaluacion]["flag"] = true;
                 $infoEvaluacion[$row->id_evaluacion]["menor_tiempo"] = -1;
             }

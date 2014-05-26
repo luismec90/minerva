@@ -108,7 +108,7 @@ class Api extends CI_Controller {
             $modulo = $this->modulo_model->obtenerModuloConEvaluacion($idEvaluacion);
             $idModulo = $modulo[0]->id_modulo;
             $intentos = $this->usuario_x_evaluacion_model->obtenerIntentos($idEvaluacion);
-            $valorMaximo = 250;
+            $valorMaximo = $modulo[0]->valor;
             $valorMinimo = 150;
             $puntajeTotal = 0;
             $array = array();

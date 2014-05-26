@@ -1,63 +1,17 @@
-findAPITries = 0;
-
-function findAPI(win)
-{
-// Check to see if the window (win) contains the API
-// if the window (win) does not contain the API and
-// the window (win) has a parent window and the parent window
-// is not the same as the window (win)
-    while ((win.API == null) && (win.parent != null) && (win.parent != win))
-    {
-// increment the number of findAPITries
-        findAPITries++;
-// Note: 7 is an arbitrary number, but should be more than sufficient
-        if (findAPITries > 7)
-        {
-            alert("Error finding API -- too deeply nested.");
-            return null;
-        }
-// set the variable that represents the window being
-// being searched to be the parent of the current window
-// then search for the API again
-        win = win.parent;
-    }
-    return win.API;
-}
-function getAPI()
-{
-// start by looking for the API in the current window
-    var theAPI = findAPI(window);
-// if the API is null (could not be found in the current window)
-// and the current window has an opener window
-    if ((theAPI == null) &&
-            (window.opener != null) &&
-            (typeof (window.opener) != "undefined"))
-    {
-// try to find the API in the current window�s opener
-        theAPI = findAPI(window.opener);
-    }
-// if the API has not been found
-    if (theAPI == null)
-    {
-// Alert the user that the API Adapter could not be found
-        alert("Unable to find an API adapter");
-    }
-    return theAPI;
-}
-
-var a, b, x, l1;
+var a, b, y;
 
 $(function() {
     API = getAPI();
     API.LMSInitialize("");
 
-    l1 = getRandom(250, 290);
-    a = getRandom(10, 50);
-    b = getRandom(30, 60);
-    x = 180 - a - b;
+    a = getRandom(45, 75);
+    b = getRandom(60,90);
+    y = 180 - a - b;
 
-    var correctAnswer = x;
+    var correctAnswer = y;
     var missConception1 = 270 - a - b;
+	var missConception2 = a;
+	var missConception3 = b;
     console.log(correctAnswer + " " + missConception1);
     draw();
 
@@ -72,19 +26,34 @@ $(function() {
             switch (valor) {
                 case correctAnswer:
                     calificacion = 1.0;
-                    $("#correcto").html("Calificaci&oacute;n: <b>" + calificacion + "</b>").removeClass("hide");
+                    $("#correcto").html("Calificación: <b>" + calificacion + "</b>").removeClass("hide");
                     break;
                 case missConception1:
                     calificacion = 0.5;
-                    feedback = "Suma de los �ngulos interiores de todo tri�ngulo es de 270";
-                    $("#feedback").html("Calificaci&oacute;n: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
+                    feedback = "Suma de los ángulos interiores de todo triángulo es de 270";
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
+                    break;
+				case missConception2:
+                    calificacion = 0.5;
+                    feedback = "a";
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
+                    break;
+				case missConception3:
+                    calificacion = 0.5;
+                    feedback = "b";
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br> Probablemente no tienes clara la teoria de triangulos").removeClass("hide");
                     break;
                 default:
                     calificacion = 0.0;
-                    $("#feedback").html("Calificaci&oacute;n: <b>" + calificacion + "</b> <br>Te recomendamos este <a href='http://www.youtube.com/watch?v=8QccEGEBBTM' target='_blank'>video</a> acerca de triangulos.").removeClass("hide");
+                    $("#feedback").html("Calificación: <b>" + calificacion + "</b> <br>Te recomendamos este <a href='http://www.youtube.com/watch?v=8QccEGEBBTM' target='_blank'>video</a> acerca de triangulos.").removeClass("hide");
                     break;
             }
             $(this).attr("disabled", true);
+            $("#modal").modal({
+                backdrop: "static",
+                keyboard: "false"
+            });
+
             if (typeof API.calificar == 'function') {
                 API.calificar(calificacion, feedback);
             }
@@ -92,63 +61,78 @@ $(function() {
             API.LMSFinish("feedback", feedback);
         }
     });
+    $("#aceptar").click(function() {
+        window.parent.location.reload();
+    });
+    $('#modal').on('hide.bs.modal', function(e) {
+        window.parent.location.reload();
+    });
+
 });
 function getRandom(bottom, top) {
     return Math.floor(Math.random() * (1 + top - bottom)) + bottom;
 }
-function draw() {
-
-    ag = toDegrees(a);
-    bg = toDegrees(b);
-    xg = toDegrees(x);
-    var x1 = 5;
-    var y1 = 200;
-
-    var x2 = l1;
-    var y2 = y1;
-
-    var x3 = x1 + Math.cos(ag) * l1 * Math.sin(bg) / Math.sin(xg);
-    var y3 = y1 - Math.sin(ag) * l1 * Math.sin(bg) / Math.sin(xg);
-
-
-    var canvas = document.getElementById('canvas');
-
+function draw(){
+	ag = toRadians(a);
+    bg = toRadians(b);
+    yg = toRadians(y);
+	
+	var mx = 10;
+	var my = 70;
+	var w = 180;
+	
+	var Ox = mx+w;
+	var Oy = my;
+	var z = my/Math.tan(yg);
+	var Px = Ox+z;
+	var Py = 0;
+	var Qx = Px-220*z/my;
+	var Qy = 220;
+	var Rx = Ox+110/Math.tan(bg);
+	var Ry = 180;
+		
+	var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-
     ctx.strokeStyle = "#0069B2";
     ctx.lineWidth = 2;
-    ctx.moveTo(x1, y1);
-
-
-    ctx.lineTo(x2, y2);
-
-    ctx.lineTo(x3, y3);
-
-
-    ctx.lineTo(x1, y1);
-
+	
+	ctx.moveTo(mx,180);
+	ctx.lineTo(300-mx,180);
+	ctx.moveTo(mx,my);
+	ctx.lineTo(300-mx,my);
+	ctx.moveTo(Px,Py);
+	ctx.lineTo(Qx,Qy);
+	ctx.moveTo(Ox,Oy);
+	ctx.lineTo(Rx,Ry);
+	
+	ctx.stroke();
+	
+	ctx.strokeStyle = "FF9900";
+    ctx.lineWidth = 1;
+	
+	ctx.beginPath();
+    ctx.arc(Ox, Oy, 20, 2*Math.PI-yg, 0);
     ctx.stroke();
-
-    ctx.beginPath(); //iniciar ruta
-    ctx.strokeStyle = "FF9900"; //color de l�nea
-    ctx.lineWidth = 1; //grosor de l�nea
-    ctx.arc(x1, y1, 20, -ag, 0);
+	
+	ctx.beginPath();
+    ctx.arc(Ox, Oy, 20, Math.PI-ag-yg,Math.PI-yg);
     ctx.stroke();
-
-    ctx.beginPath(); //iniciar ruta
-    ctx.arc(x2, y2, 20, -Math.PI, -Math.PI + bg);
+	
+	ctx.beginPath();
+    ctx.arc(Rx, Ry, 20, Math.PI,-Math.PI+bg);
     ctx.stroke();
-
-    ctx.beginPath(); //iniciar ruta
-    ctx.arc(x3, y3, 20, bg, -Math.PI - ag);
-    ctx.stroke();
-
-
-    ctx.font = "15px Verdana";
-    ctx.fillText("x=?", x3 - 15, y3 - 5);
-    ctx.fillText("a=" + a + String.fromCharCode(176), x1 + 10, y1 + 15);
-    ctx.fillText("b=" + b + String.fromCharCode(176), x2 - 50, y2 + 15);
+	
+	ctx.font = "15px Verdana";
+    ctx.fillText("y=?", Ox+30, Oy-10);
+    ctx.fillText("a=" + a + String.fromCharCode(176), Ox+20, Oy+20);
+    ctx.fillText("b=" + b + String.fromCharCode(176), Rx - 50, Ry + 15);
+	
+	ctx.font = "24px Verdana bold";
+	ctx.fillText("A", 0, my-10);
+	ctx.fillText("B", 280, my-10);
+	ctx.fillText("C", 0, 205);
+	ctx.fillText("D", 280, 205);
 }
-function toDegrees(angle) {
+function toRadians(angle) {
     return angle * (Math.PI / 180);
 }

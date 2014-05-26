@@ -89,12 +89,29 @@
         </div>
     </div>
 </div>
+<script>
+    base_url = "<?= base_url() ?>";
+<?php if (isset($_SESSION["idUsuario"]) && isset($idCurso)) {
+    ?>
+        idUsuarioGlobal = "<?= $_SESSION["idUsuario"] ?>";
+        nombreUsuarioGlobal = "<?= $_SESSION["nombre"] ?>";
+        idCursoGlobal = "<?= $idCurso ?>";
+    <?php
+} else {
+    ?>
+        idUsuarioGlobal = -1;
+        nombreUsuarioGlobal = "";
+        idCursoGlobal = -1;
+<?php } ?>
+
+
+</script>
 <script src="<?= base_url() ?>assets/libs/jQuery-1.11.0/jQuery.min.js"></script>
 <script src="<?= base_url() ?>assets/libs/bootstrap-3.1.1/js/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/global.js"></script>
 <?php if (isset($js)) foreach ($js as $row) { ?>
         <script src="<?= base_url() ?>assets/<?= $row ?>.js"></script>
     <?php } ?>
-<script>base_url = "<?= base_url() ?>";</script>
+
 </body>
 </html>

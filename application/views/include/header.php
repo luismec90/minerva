@@ -59,6 +59,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <?php if (isset($_SESSION["nombre"])) { ?>
                             <?php if (isset($idCurso)) { ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle white" data-toggle="dropdown"> Usuarios conectados <b class="caret"></b></a>
+                                    <ul id="usuarios-conectados" class="dropdown-menu">
+                                        
+                                    </ul>
+                                </li>
                                 <li class="<?= ($tab == "curso") ? "active" : "" ?>"><a id="link-curso" title="Ver modulos" href="<?= base_url() ?>curso/<?= $idCurso ?>" class="white"><i class="icon-position fa fa-book fa-lg"></i></a></li>
                                 <li class="<?= ($tab == "muro") ? "active" : "" ?>"><a id="link-muro" title="Ver Muro" href="<?= base_url() ?>muro/<?= $idCurso ?>" class="white"><span class="glyphicon glyphicon-bullhorn"></span></a></li>
                                 <li class="<?= ($tab == "ranking") ? "active" : "" ?>"><a id="link-ranking" title="Ver ranking" href="<?= base_url() ?>ranking/<?= $idCurso ?>" class="white"><i class="icon-position fa fa-list-ol fa-lg"></i></a></li>
@@ -68,6 +74,7 @@
                                 </li>
 
                             <?php } ?>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle white" data-toggle="dropdown"> <?= $_SESSION["nombre"] ?> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">

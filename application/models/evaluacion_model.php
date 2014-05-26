@@ -30,10 +30,11 @@ class Evaluacion_model extends CI_Model {
     }
 
     function obtenerIntentosAprobados($idModulo, $idEstudiante) {
-        $this->db->select('ue.*');
+        $this->db->select('ue.*,te.valor');
         $this->db->from('evaluacion e');
         $this->db->join('modulo mo', "mo.id_modulo = e.id_modulo AND mo.id_modulo='$idModulo'");
         $this->db->join('usuario_x_evaluacion ue', "ue.id_evaluacion=e.id_evaluacion AND ue.id_usuario='$idEstudiante'");
+        $this->db->join('tipo_evaluacion te', "te.id_tipo_evaluacion=e.id_tipo_evaluacion");
         $this->db->order_by("ue.fecha_inicial");
         return $this->db->get()->result();
     }

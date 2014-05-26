@@ -18,6 +18,7 @@ class Fill_model extends CI_Model {
         $this->usuario_x_curso();
         $this->modulo();
         $this->material();
+        $this->tipo_evaluacion();
         $this->evaluacion();
         $this->usuario_x_evaluacion();
         $this->usuario_x_modulo();
@@ -380,7 +381,7 @@ class Fill_model extends CI_Model {
         $data = array(
             'id_curso' => 1,
             'id_usuario' => 1,
-             'id_nivel' => 2,
+            'id_nivel' => 2,
             'fecha' => '2014-11-03 10:23:54'
         );
         $this->db->insert('usuario_x_curso', $data);
@@ -621,6 +622,31 @@ class Fill_model extends CI_Model {
         $this->db->insert('material', $data);
     }
 
+    private function tipo_evaluacion() {
+        $this->db->empty_table('tipo_evaluacion');
+
+        $data = array(
+            'id_tipo_evaluacion' => 1,
+            'nombre' => 'Selección multiple',
+            'valor' => '250'
+        );
+        $this->db->insert('tipo_evaluacion', $data);
+
+        $data = array(
+            'id_tipo_evaluacion' => 2,
+            'nombre' => 'Respuesta libre',
+            'valor' => '350'
+        );
+        $this->db->insert('tipo_evaluacion', $data);
+
+        $data = array(
+            'id_tipo_evaluacion' => 3,
+            'nombre' => 'Desafio',
+            'valor' => '450'
+        );
+        $this->db->insert('tipo_evaluacion', $data);
+    }
+
     private function evaluacion() {
         $this->db->empty_table('evaluacion');
 
@@ -628,7 +654,7 @@ class Fill_model extends CI_Model {
             'id_evaluacion' => 1,
             'id_modulo' => 1,
             'orden' => 1,
-            'tipo' => "seleccionmultiple"
+            'id_tipo_evaluacion' => 1
         );
         $this->db->insert('evaluacion', $data);
 
@@ -636,7 +662,7 @@ class Fill_model extends CI_Model {
             'id_evaluacion' => 2,
             'id_modulo' => 1,
             'orden' => 2,
-            'tipo' => "respuestalibre"
+            'id_tipo_evaluacion' => 2
         );
         $this->db->insert('evaluacion', $data);
 
@@ -644,56 +670,22 @@ class Fill_model extends CI_Model {
             'id_evaluacion' => 3,
             'id_modulo' => 1,
             'orden' => 3,
-            'tipo' => "desafio"
+            'id_tipo_evaluacion' => 3
         );
         $this->db->insert('evaluacion', $data);
-        return;
+
         $data = array(
             'id_evaluacion' => 4,
             'id_modulo' => 1,
-            'orden' => 4
-        );
-        $this->db->insert('evaluacion', $data);
-
-        $data = array(
-            'id_evaluacion' => 5,
-            'id_modulo' => 1,
-            'orden' => 5
-        );
-        $this->db->insert('evaluacion', $data);
-
-        $data = array(
-            'id_evaluacion' => 6,
-            'id_modulo' => 1,
-            'orden' => 6
-        );
-        $this->db->insert('evaluacion', $data);
-
-        $data = array(
-            'id_evaluacion' => 7,
-            'id_modulo' => 1,
-            'orden' => 7
-        );
-        $this->db->insert('evaluacion', $data);
-
-        $data = array(
-            'id_evaluacion' => 8,
-            'id_modulo' => 3,
-            'orden' => 8
-        );
-        $this->db->insert('evaluacion', $data);
-
-        $data = array(
-            'id_evaluacion' => 9,
-            'id_modulo' => 3,
-            'orden' => 9
+            'orden' => 4,
+            'id_tipo_evaluacion' => 1
         );
         $this->db->insert('evaluacion', $data);
     }
 
     private function usuario_x_evaluacion() {
-
         $this->db->empty_table('usuario_x_evaluacion');
+        return;
         $data = array(
             'id_usuario_evaluacion' => 1,
             'id_usuario' => 1,
@@ -851,7 +843,7 @@ class Fill_model extends CI_Model {
 
     private function usuario_x_modulo() {
         $this->db->empty_table('usuario_x_modulo');
-
+        return;
         $data = array(
             'id_usuario_modulo' => 1,
             'id_usuario' => 1,
@@ -1157,8 +1149,8 @@ class Fill_model extends CI_Model {
             'visto' => 1
         );
         $this->db->insert('usuario_curso_logro', $data);
-        
-         $data = array(
+
+        $data = array(
             'id_usuario_curso_logro' => 2,
             'id_usuario' => 1,
             'id_curso' => 1,
@@ -1178,10 +1170,10 @@ class Fill_model extends CI_Model {
             'tipo' => 'logro'
         );
         $this->db->insert('muro', $data);
-      
+
         $data = array(
             'id_muro' => 2,
-            'muro_id_muro'=>1,
+            'muro_id_muro' => 1,
             'id_curso' => 1,
             'id_usuario' => 10,
             'mensaje' => "Felicitaciones!"

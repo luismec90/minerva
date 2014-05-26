@@ -1,5 +1,8 @@
-
+var conn;
 $(function() {
+    if (idUsuarioGlobal != -1) {
+        socket();
+    }
     $(".formSubmit").submit(function() {
         $("#coverDisplay").css({
             "opacity": "1",
@@ -95,4 +98,58 @@ function verificarNuevoLogro() {
             });
         }
     });
+}
+
+function socket() {
+    console.log("ini");
+     conn = new WebSocket('ws://guiame.medellin.unal.edu.co:8080');
+    conn.onopen = function(e) {
+        console.log("Connection established!");
+        conn.send('Hello World!');
+        
+    };
+
+    conn.onmessage = function(e) {
+        console.log(e.data);
+    };
+
+    /*
+     var wsUri = "ws://localhost:9000/application/controllers/socket.php";
+     websocket = new WebSocket(wsUri);
+     
+     websocket.onopen = function(ev) { // connection is open 
+     console.log("Conectado");
+     }
+     
+     
+     
+     //#### Message received from server?
+     websocket.onmessage = function(ev) {
+     var msg = JSON.parse(ev.data); //PHP sends Json data
+     console.log(msg);
+     if (msg.type == "inicio") {
+     var msg = {
+     idUsuario: idUsuarioGlobal,
+     nombreUsuario: nombreUsuarioGlobal
+     };
+     //convert and send data to server
+     websocket.send(JSON.stringify(msg));
+     } else if (msg.type == "run" && msg.idUsuario != null && idUsuarioGlobal != msg.idUsuario) {
+     var idUsuario = msg.idUsuario; //message type
+     var nombreUsuario = msg.nombreUsuario; //message text
+     if ($("#usuario-" + idUsuario).length == 0) {
+     $("#usuarios-conectados").append("<li id='usuario-" + idUsuario + "'><a>" + nombreUsuario + "</a></li>");
+     }
+     
+     }
+     };
+     
+     websocket.onerror = function(ev) {
+     console.log("error" + ev);
+     console.log(ev);
+     };
+     websocket.onclose = function(ev) {
+     console.log("cerrar" + ev);
+     };
+     */
 }

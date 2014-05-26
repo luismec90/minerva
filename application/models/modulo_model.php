@@ -34,9 +34,10 @@ class Modulo_model extends CI_Model {
     }
 
     function obtenerModuloConEvaluacion($idEvaluacion) {
-        $query = "SELECT m.*
+        $query = "SELECT m.*,te.valor
                 FROM evaluacion e
                 JOIN modulo m ON m.id_modulo=e.id_modulo
+                JOIN tipo_evaluacion te ON te.id_tipo_evaluacion=e.id_tipo_evaluacion
                 WHERE e.id_evaluacion='$idEvaluacion'";
         return $this->db->query($query)->result();
     }
