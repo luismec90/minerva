@@ -89,6 +89,38 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="retado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Has sido retado</h4>
+            </div>
+            <div id="body-modal-retado" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button id="" type="button" class="btn btn-default" data-dismiss="modal">Rechazar</button>
+                <button id="aceptar-modal-retado" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="comenzar-reto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Has sido retado</h4>
+            </div>
+            <div id="body-modal-retado" class="modal-body">
+                2+2=<input  type="text">
+            </div>
+            <div class="modal-footer">
+                <button id="aceptar-modal-comenzar-reto" type="button" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     base_url = "<?= base_url() ?>";
 <?php if (isset($_SESSION["idUsuario"]) && isset($idCurso)) {
