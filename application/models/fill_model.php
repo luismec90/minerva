@@ -118,7 +118,6 @@ class Fill_model extends CI_Model {
             'umbral' => 0.6
         );
         $this->db->insert('curso', $data);
-        return;
     }
 
     private function afiliacion() {
@@ -575,7 +574,6 @@ class Fill_model extends CI_Model {
             'orden' => 4
         );
         $this->db->insert('material', $data);
-        return;
         $data = array(
             'id_modulo' => 1,
             'nombre' => 'Álgebra de funciones, composición de funciones',
@@ -685,7 +683,6 @@ class Fill_model extends CI_Model {
 
     private function usuario_x_evaluacion() {
         $this->db->empty_table('usuario_x_evaluacion');
-        return;
         $data = array(
             'id_usuario_evaluacion' => 1,
             'id_usuario' => 1,
@@ -843,7 +840,6 @@ class Fill_model extends CI_Model {
 
     private function usuario_x_modulo() {
         $this->db->empty_table('usuario_x_modulo');
-        return;
         $data = array(
             'id_usuario_modulo' => 1,
             'id_usuario' => 1,

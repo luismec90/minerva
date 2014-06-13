@@ -99,8 +99,24 @@
             <div id="body-modal-retado" class="modal-body">
             </div>
             <div class="modal-footer">
-                <button id="" type="button" class="btn btn-default" data-dismiss="modal">Rechazar</button>
+                <button id="rechazar-modal-retado" type="button" class="btn btn-default" data-dismiss="modal">Rechazar</button>
                 <button id="aceptar-modal-retado" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="reto-rechazado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Reto rechazado</h4>
+            </div>
+            <div id="body-modal-retado" class="modal-body">
+                <em id="nombre-usuario-reto-rechazado" class="text-info"></em> ha rechazado el reto.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>
@@ -117,6 +133,40 @@
             </div>
             <div class="modal-footer">
                 <button id="aceptar-modal-comenzar-reto" type="button" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ganador-reto-por-w" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Usuario desconectado</h4>
+            </div>
+            <div id="body-modal-retado" class="modal-body">
+                <em id="nombre-usuario-desconectado" class="text-info"></em> se ha desconectado, por lo cual eres el ganador del reto.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-desconectado-antes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Duelo cancelado</h4>
+            </div>
+            <div id="body-modal-retado" class="modal-body">
+                El usuario retador se ha desconectado.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
             </div>
         </div>
     </div>

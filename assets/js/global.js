@@ -55,22 +55,32 @@ $(function() {
     $("#usuarios-conectados").on("click", "a", function() {
         var data = {
             tipo: 'retar',
+            id_curso: idCursoGlobal,
             id_usuario: idUsuarioGlobal,
             nombre_usuario: nombreUsuarioGlobal,
             usuario_retado: $(this).data("id-usuario")
         };
         conn.send(JSON.stringify(data));
     });
-    $("#aceptar-modal-retado").click(function() {
-        console.log("asd");
+    $("#rechazar-modal-retado").click(function() {
         var data = {
-            tipo: 'acpetar_reto',
+            tipo: 'rechazar_reto',
+            id_curso: idCursoGlobal,
             id_usuario: idUsuarioGlobal,
             nombre_usuario: nombreUsuarioGlobal,
             usuario_retador: usuarioRetadorGlobal
         };
         conn.send(JSON.stringify(data));
-        $("#comenzar-reto").modal();
+    });
+    $("#aceptar-modal-retado").click(function() {
+        var data = {
+            tipo: 'acpetar_reto',
+            id_curso: idCursoGlobal,
+            id_usuario: idUsuarioGlobal,
+            nombre_usuario: nombreUsuarioGlobal,
+            usuario_retador: usuarioRetadorGlobal
+        };
+        conn.send(JSON.stringify(data));
     });
     verificarNuevoLogro();
 });
@@ -122,11 +132,12 @@ function verificarNuevoLogro() {
 }
 
 function socket() {
-    conn = new WebSocket('ws://guiame.medellin.unal.edu.co:8080');
+    conn = new WebSocket('ws://guiame.medellin.unal.edu.co:8080?id_curso=45');
     conn.onopen = function(e) {
         console.log("Connection established!");
         var data = {
             tipo: 'inicio',
+            id_curso: idCursoGlobal,
             id_usuario: idUsuarioGlobal,
             nombre_usuario: nombreUsuarioGlobal
         };
@@ -139,9 +150,10 @@ function socket() {
             switch (data.tipo) {
                 case "inicio":
                     var str = "";
-                    $.each(data.datos, function(id_usuario, nombre_usuario) {
+
+                    $.each(data.datos, function(id_usuario, info) {
                         if (id_usuario != idUsuarioGlobal) {
-                            str += "<li id='usuario-" + id_usuario + "'><a data-id-usuario='" + id_usuario + "'>" + nombre_usuario + "</a></li>";
+                            str += "<li id='usuario-" + id_usuario + "'><a data-id-usuario='" + id_usuario + "'>" + info.nombre_usuario + "</a></li>";
                         }
                     });
                     $("#usuarios-conectados").html(str);
@@ -170,10 +182,29 @@ function socket() {
 
                     });
                     break;
-
+                case "reto_rechazado":
+                    $.each(data.datos, function(id_usuario, nombre_usuario) {
+                        $("#nombre-usuario-reto-rechazado").html(nombre_usuario);
+                        $("#reto-rechazado").modal();
+                    });
+                    break;
                 case "reto_aceptado":
                     $.each(data.datos, function(id_usuario, nombre_usuario) {
                         $("#comenzar-reto").modal();
+                    });
+                    break;
+                case "desconectado":
+                    $.each(data.datos, function(id_usuario, nombre_usuario) {
+                        $(".modal").modal('hide');
+                        $("#nombre-usuario-desconectado").html(nombre_usuario);
+                        $("#ganador-reto-por-w").modal();
+                    });
+                    break;
+
+                case "desconectado_antes":
+                    $.each(data.datos, function(id_usuario, nombre_usuario) {
+                        $(".modal").modal('hide');
+                        $("#modal-desconectado-antes").modal();
                     });
                     break;
             }
