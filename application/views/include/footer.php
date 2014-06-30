@@ -129,10 +129,10 @@
                 <h4 class="modal-title" id="myModalLabel">Has sido retado</h4>
             </div>
             <div id="body-modal-retado" class="modal-body">
-                2+2=<input  type="text">
+                2+2=<input id="respuesta-reto"  type="text">
             </div>
             <div class="modal-footer">
-                <button id="aceptar-modal-comenzar-reto" type="button" class="btn btn-primary" data-dismiss="modal">Enviar</button>
+                <button id="enviar-respuesta-reto" type="button" class="btn btn-primary" data-dismiss="modal">Enviar</button>
             </div>
         </div>
     </div>
@@ -171,25 +171,41 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="custom-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="custom-modal-title"></h4>
+            </div>
+            <div id="body-custom-modal" class="modal-body">
+             
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     base_url = "<?= base_url() ?>";
+    idUsuarioGlobal = -1;
+    nombreUsuarioGlobal = "";
+    idCursoGlobal = -1;
+    fechaInicioReto = "";
 <?php if (isset($_SESSION["idUsuario"]) && isset($idCurso)) {
     ?>
         idUsuarioGlobal = "<?= $_SESSION["idUsuario"] ?>";
         nombreUsuarioGlobal = "<?= $_SESSION["nombre"] ?>";
         idCursoGlobal = "<?= $idCurso ?>";
-    <?php
-} else {
-    ?>
-        idUsuarioGlobal = -1;
-        nombreUsuarioGlobal = "";
-        idCursoGlobal = -1;
-<?php } ?>
+<?php }
+?>
 
 
 </script>
 <script src="<?= base_url() ?>assets/libs/jQuery-1.11.0/jQuery.min.js"></script>
 <script src="<?= base_url() ?>assets/libs/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+<script src="<?= base_url() ?>assets/js/socket.js"></script>
 <script src="<?= base_url() ?>assets/js/global.js"></script>
 <?php if (isset($js)) foreach ($js as $row) { ?>
         <script src="<?= base_url() ?>assets/<?= $row ?>.js"></script>
